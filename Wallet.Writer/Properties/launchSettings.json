@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Wallet.Writer": {
+      "commandName": "Project"
+    },
+    "Container (Dockerfile)": {
+      "commandName": "Docker"
+    }
+  }
+}
