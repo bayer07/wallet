@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
-using Newtonsoft.Json;
 using Wallet.Api.Hubs;
-using Wallet.Api.Models;
 using Wallet.Data.Repositories;
 using Wallet.Domain;
 
@@ -25,12 +23,10 @@ namespace Wallet.Api.Controllers
         private readonly IMapper _mapper;
 
         [HttpPost]
-        public async Task<string> PostMessage(MessageModel messageModel)
+        public async Task<string> PostMessage(Message message)
         {
             try
             {
-                var message = _mapper.Map<Message>(messageModel);
-
                 await _messageRepository.InsertMessage(message);
 
                 await _hubContext.Clients.All.SendAsync("ReceiveMessage", message);

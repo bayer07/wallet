@@ -25,7 +25,6 @@ namespace Wallet.Api
                 connection.Open();
                 return connection;
             });
-            services.AddAutoMapper(x => x.AddProfile<AutoMapperProfile>());
             services.AddSignalR();
             services.AddCors(options =>
             {

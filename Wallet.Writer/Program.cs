@@ -1,7 +1,7 @@
 ﻿using Serilog;
 using System.Text;
 using System.Text.Json;
-using Wallet.Api.Models;
+using Wallet.Domain;
 
 namespace Wallet.Writer
 {
@@ -21,7 +21,7 @@ namespace Wallet.Writer
             {
                 try
                 {
-                    var message = new MessageModel { Text = Guid.NewGuid().ToString(), Number = number };
+                    var message = new Message { Text = Guid.NewGuid().ToString(), Number = number };
                     using StringContent jsonContent = new(JsonSerializer.Serialize(message), Encoding.UTF8, "application/json");
                     using HttpResponseMessage httpResponse = await httpClient.PostAsync("api/message", jsonContent);
                     string response = await httpResponse.Content.ReadAsStringAsync();
